@@ -13,6 +13,8 @@ import FadeLoader from "react-spinners/FadeLoader";
 import { useSelector } from "react-redux";
 import { getAllJobs } from "./redux/actions/jobActions.";
 import { useEffect } from "react";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
 
         <Route path="/profile" exact component={Profile} />
         <Route path="/jobs/:id" exact component={Jobinfo} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Register} />
       </BrowserRouter>
     </div>
   );

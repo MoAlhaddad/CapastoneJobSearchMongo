@@ -28,29 +28,53 @@ class DefaultLayout extends React.Component {
   render() {
     return (
       <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}
-          style={{position: 'sticky' , overflow : 'auto' , height: '100%', top:0}}
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={this.state.collapsed}
+          style={{
+            position: "sticky",
+            overflow: "auto",
+            height: "100%",
+            top: 0,
+          }}
         >
           <div className="logo">
-            {this.state.collapsed ? (<h1>MJ</h1>) : (<h1>MoJobs</h1>)}
-            </div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={[window.location.pathname]}>
+            {this.state.collapsed ? <h1>MJ</h1> : <h1>MoJobs</h1>}
+          </div>
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={[window.location.pathname]}
+          >
             <Menu.Item key="/" icon={<UserOutlined />}>
               <Link to="/">Home</Link>
             </Menu.Item>
             <Menu.Item key="/profile" icon={<VideoCameraOutlined />}>
-              <Link to='/profile'>Profile</Link>
+              <Link to="/profile">Profile</Link>
             </Menu.Item>
             <Menu.Item key="/appliedjobs" icon={<UploadOutlined />}>
-              <Link to='/appliedjobs'>Applied Jobs</Link>
+              <Link to="/appliedjobs">Applied Jobs</Link>
             </Menu.Item>
             <Menu.Item key="/postjob" icon={<UploadOutlined />}>
-              <Link to='/postjob'>Post Job</Link>
+              <Link to="/postjob">Post Job</Link>
+            </Menu.Item>
+            <Menu.Item key="/logout" icon={<UploadOutlined />}>
+              <Link to="/login">Log out</Link>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0, position: 'sticky' , overflow : 'auto' , top:0 , zindex:9999 }}>
+          <Header
+            className="site-layout-background"
+            style={{
+              padding: 0,
+              position: "sticky",
+              overflow: "auto",
+              top: 0,
+              zindex: 9999,
+            }}
+          >
             {React.createElement(
               this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {
