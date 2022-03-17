@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Job = require("../models/jobModel");
-import { ensureCorrectUser, ensureLoggedIn } from "../middleware/auth.js";
+const { ensureCorrectUser, ensureLoggedIn } = require("../middleware/auth.js");
 
 router.get("/getalljobs", ensureLoggedIn, async (req, res) => {
   try {

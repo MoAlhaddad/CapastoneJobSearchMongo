@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-import { getDatabaseUri } from "./config.js";
+const { getDatabaseUri } = require("./config.js");
+
 dbconnect();
 async function dbconnect() {
   try {

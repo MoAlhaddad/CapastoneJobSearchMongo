@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { Row, Col, Form, Tabs, Input, Button, Select } from "antd";
 import { useDispatch } from "react-redux";
@@ -9,15 +9,15 @@ const { Option } = Select;
 function PostJob() {
   const [jobInfo, setJobInfo] = useState({});
   const [activeTab, setActiveTab] = useState("0");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   function onFirstFormFinish(values) {
     setJobInfo(values);
     setActiveTab("1");
   }
-  function onFinalFormFinish(values){
-    const finalObj = {...jobInfo , ...values};
-    console.log(finalObj)
-    dispatch(postJob(finalObj))
+  function onFinalFormFinish(values) {
+    const finalObj = { ...jobInfo, ...values };
+    console.log(finalObj);
+    dispatch(postJob(finalObj));
   }
   return (
     <div>
@@ -83,7 +83,7 @@ function PostJob() {
             </Form>
           </TabPane>
           <TabPane tab="Company" key="1">
-            <Form layout='vertical' onFinish={onFinalFormFinish}>
+            <Form layout="vertical" onFinish={onFinalFormFinish}>
               <Row>
                 <Col lg={8} sm={24}>
                   <Form.Item
@@ -95,7 +95,13 @@ function PostJob() {
                   </Form.Item>
                 </Col>
               </Row>
-              <Button onClick={()=>{setActiveTab("0")}}>Previous</Button>
+              <Button
+                onClick={() => {
+                  setActiveTab("0");
+                }}
+              >
+                Previous
+              </Button>
               <Button htmlType="submit">Post Job</Button>
             </Form>
           </TabPane>

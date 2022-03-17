@@ -10,26 +10,26 @@ import PostJob from "./pages/PostJob";
 import Profile from "./pages/Profile";
 import { css } from "@emotion/react";
 import FadeLoader from "react-spinners/FadeLoader";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getAllJobs } from "./redux/actions/jobActions.";
 import { useEffect } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PostedJobs from "./pages/PostedJobs";
 
-
 function App() {
-  const {loader} = useSelector(state=>state.loaderReducer)
-  const dispatch = useDispatch()
+  const { loader } = useSelector((state) => state.loaderReducer);
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllJobs());
   }, []);
   return (
     <div className="App">
-     
-      {loader && (<div className="sweet-loading text-center">
-        <FadeLoader color={'#001529'}  />
-      </div>)}
+      {loader && (
+        <div className="sweet-loading text-center">
+          <FadeLoader color={"#001529"} />
+        </div>
+      )}
 
       <BrowserRouter>
         <Route path="/" exact component={Home} />

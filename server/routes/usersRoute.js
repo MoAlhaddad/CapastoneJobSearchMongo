@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
-
-import { ensureCorrectUser } from "../middleware/auth.js";
-import { BCRYPT_WORK_FACTOR } from "../config.js";
+const { ensureCorrectUser } = require("../middleware/auth.js");
+const { BCRYPT_WORK_FACTOR } = require("../config.js");
 router.post("/register", async (req, res) => {
   try {
     // TODO: verify that username does not exist in the db

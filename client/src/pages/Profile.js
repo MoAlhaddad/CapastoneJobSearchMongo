@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { Row, Col, Form, Tabs, Input, Button } from "antd";
 import { useDispatch } from "react-redux";
@@ -7,31 +7,33 @@ const { TabPane } = Tabs;
 function Profile() {
   const [personalInfo, setPersonalInfo] = useState();
   const [activeTab, setActiveTab] = useState("1");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   function onPersonInfoSubmit(values) {
     setPersonalInfo(values);
     console.log(values);
     setActiveTab("2");
-
   }
 
-  function onFinalFinish(values){
+  function onFinalFinish(values) {
+    const finalObj = { ...personalInfo, ...values };
 
-    const finalObj = {...personalInfo, ...values}
+    console.log(finalObj);
 
-    console.log(finalObj)
-
-    dispatch(updateUser(finalObj))
+    dispatch(updateUser(finalObj));
   }
 
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div>
       <DefaultLayout>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Personal Info" key="1">
-            <Form layout="vertical" onFinish={onPersonInfoSubmit} initialValues={user}>
+            <Form
+              layout="vertical"
+              onFinish={onPersonInfoSubmit}
+              initialValues={user}
+            >
               <Row>
                 <Col lg={8} sm={24}>
                   <Form.item
@@ -108,13 +110,17 @@ function Profile() {
             </Form>
           </TabPane>
           <TabPane tab="Skills and Education" key="2">
-            <Form initialValues={user} layout="vertical" onFinish={onFinalFinish}>
+            <Form
+              initialValues={user}
+              layout="vertical"
+              onFinish={onFinalFinish}
+            >
               <Row>
                 <Col lg={24} sm={24}>
                   <Form.List name="education">
                     {(education, { add, remove }) => (
                       <div>
-                        {education.map((field , index) => (
+                        {education.map((field, index) => (
                           <div className="flex">
                             <Form.Item
                               {...field}
@@ -124,20 +130,34 @@ function Profile() {
                             >
                               <TextArea rows={4} />
                             </Form.Item>
-                            <Button onClick={()=>{add()}}>Add more</Button>
-                        
-                            {index !== 0 && (<Button onClick={()=>{remove(index)}}>Delete</Button>) }
+                            <Button
+                              onClick={() => {
+                                add();
+                              }}
+                            >
+                              Add more
+                            </Button>
+
+                            {index !== 0 && (
+                              <Button
+                                onClick={() => {
+                                  remove(index);
+                                }}
+                              >
+                                Delete
+                              </Button>
+                            )}
                           </div>
                         ))}
                       </div>
                     )}
                   </Form.List>
-                  </Col>
-                  <Col lg={24} sm={24}>
+                </Col>
+                <Col lg={24} sm={24}>
                   <Form.List name="skills">
                     {(skills, { add, remove }) => (
                       <div>
-                        {skills.map((field , index) => (
+                        {skills.map((field, index) => (
                           <div className="flex">
                             <Form.Item
                               {...field}
@@ -147,20 +167,34 @@ function Profile() {
                             >
                               <TextArea rows={4} />
                             </Form.Item>
-                            <Button onClick={()=>{add()}}>Add more</Button>
-                        
-                            {index !== 0 && (<Button onClick={()=>{remove(index)}}>Delete</Button>) }
+                            <Button
+                              onClick={() => {
+                                add();
+                              }}
+                            >
+                              Add more
+                            </Button>
+
+                            {index !== 0 && (
+                              <Button
+                                onClick={() => {
+                                  remove(index);
+                                }}
+                              >
+                                Delete
+                              </Button>
+                            )}
                           </div>
                         ))}
                       </div>
                     )}
                   </Form.List>
-                  </Col>
-                  <Col lg={24} sm={24}>
+                </Col>
+                <Col lg={24} sm={24}>
                   <Form.List name="experience">
                     {(experience, { add, remove }) => (
                       <div>
-                        {experience.map((field , index) => (
+                        {experience.map((field, index) => (
                           <div className="flex">
                             <Form.Item
                               {...field}
@@ -170,9 +204,23 @@ function Profile() {
                             >
                               <TextArea rows={4} />
                             </Form.Item>
-                            <Button onClick={()=>{add()}}>Add more</Button>
-                        
-                            {index !== 0 && (<Button onClick={()=>{remove(index)}}>Delete</Button>) }
+                            <Button
+                              onClick={() => {
+                                add();
+                              }}
+                            >
+                              Add more
+                            </Button>
+
+                            {index !== 0 && (
+                              <Button
+                                onClick={() => {
+                                  remove(index);
+                                }}
+                              >
+                                Delete
+                              </Button>
+                            )}
                           </div>
                         ))}
                       </div>
@@ -180,7 +228,13 @@ function Profile() {
                   </Form.List>
                 </Col>
               </Row>
-              <Button onClick={()=>{setActiveTab("1")}}>Previous</Button>
+              <Button
+                onClick={() => {
+                  setActiveTab("1");
+                }}
+              >
+                Previous
+              </Button>
               <Button htmlType="submit">Update</Button>
             </Form>
           </TabPane>
